@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        p {
+            color: red;
+        }
+
+        table {
+            width: 50%;
+            margin: auto;
+            border-collapse: collapse;
+        }
+
+        table td {
+            padding: 10px;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        table tr:hover {
+            background-color: #ddd;
+        }
+        h1{
+            text-align: center;
+        }
+        #blue{
+            background-color: cyan;
+        }
+       
+
+    </style>
+</head>
+
+<body>
+    <h1>ACCOUNT OPENING FORM</h1>
+
+    
+    <form name="myForm" method="post" onsubmit="return validate()">
+        <table>
+            <tr>
+                <td id="blue" colspan="3">Personal details</td>
+            </tr>
+            <tr>
+                <td>Name*:</td>
+                <td><input type="text" name="name"></td>
+                <td>
+                    <p id="name"></p>
+                </td>
+            </tr>
+            <tr>
+                <td>Registration number:</td>
+                <td><input type="text" name="regno"></td>
+                <td>
+                    <p id="regno"></p>
+                </td>
+            </tr>
+            <tr>
+                <td>Date Of Birth*:</td>
+                <td><input type="date" name="date"></td>
+                <td>
+                    <p id="date"></p>
+                </td>
+            </tr>
+            <tr>
+                <td>Program:</td>
+                <td><input type="text" name="program"></td>
+                <td>
+                    <p id="program"></p>
+                </td>
+            </tr>
+            <tr>
+                <td>Email id*:</td>
+                <td><input type="text" name="email"></td>
+                <td>
+                    <p id="email"></p>
+                </td>
+            </tr>
+            <tr>
+                <td>Country*:</td>
+                <td>
+                    <select name="Country">     
+            
+                        <option value="">Select Country</option>     
+                         <option value="INDIA">India</option>
+                        <option value="USA">United States</option>
+                        <option value="UK">United Kingdom</option>
+                        <option value="Canada">Canada</option>
+                    </select>
+                </td>
+                <td>
+                    <p id="country"></p>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Phone number*:</td>
+                <td><input type="text" name="phone"></td>
+                <td>
+                    <p id="phone"></p>
+                </td>
+            </tr>
+            <tr>
+                <td>Gender*:</td>
+                <td>
+                    <input type="radio" name="gender" value="male"> Male
+                    <input type="radio" name="gender" value="female"> Female
+                    <input type="radio" name="gender" value="other"> Other
+                </td>
+                <td>
+                    <p id="gender"></p>
+                </td>
+            </tr>
+            <tr>
+                <td>Guardian Name:</td>
+                <td><input type="text" name="guardian"></td>
+                <td>
+                    <p id="guardian"></p>
+                </td>
+            </tr>
+            <tr>
+                <td>Nationality*:</td>
+                <td>
+                    <select name="nationality">     
+            
+                        <option value="">Select Nationality</option>     
+                         <option value="INDIA">Indian</option>
+                        <option value="USA">American</option>
+                        <option value="UK">British</option>
+                        <option value="Canada">Canadian</option>
+                    </select>
+                </td>
+                <td>
+                    <p id="nationality"></p>
+                </td>
+            </tr>
+            <tr>
+                <td>Zip Code*:</td>
+                <td><input type="text" name="zipcode"></td>
+                <td>
+                    <p id="zipcode"></p>
+                </td>
+            </tr>
+            <tr>
+                <td>Temporary Address:</td>
+                <td><input type="text" name="taddress"></td>
+                <td>
+                    <p id="taddress"></p>
+                </td>
+            </tr>
+            <tr>
+                <td>Permanent Address same as Temporary Address?</td>
+                <td><input type="checkbox" name="checkbox" onchange="check()"></td>
+                <td>
+                    <p id="checkbox"></p>
+                </td>
+            </tr>
+            <tr>
+                <td>Permanent Address:</td>
+                <td><input type="text" name="paddress"></td>
+                <td>
+                    <p id="paddress"></p>
+                </td>
+            </tr>
+            <tr>
+                <td>Preferences:</td>
+                <td>
+                    <input type="checkbox" name="internetBanking"> Internet Banking<br>
+                    <input type="checkbox" name="mobileBanking"> Mobile Banking<br>
+                    <input type="checkbox" name="smsAlerts"> SMS Alerts
+                </td>
+                <td>
+                    <p id="preferences"></p>
+                </td>
+            </tr>
+            <tr>
+                <td>Account Type*:</td>
+                <td>
+                    <input type="radio" name="accountType" value="savings"> Savings
+                    <input type="radio" name="accountType" value="fixed"> Fixed
+                </td>
+                <td>
+                    <p id="accountType"></p>
+                </td>
+            </tr>
+            <tr>
+                <td>Password*:</td>
+                <td><input type="password" name="password"></td>
+                <td>
+                    <p id="password"></p>
+                </td>
+            </tr>
+            <tr>
+                <td>Verify Password*:</td>
+                <td><input type="password" name="verifyPassword"></td>
+                <td>
+                    <p id="verifyPassword"></p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <input type="submit" value="Submit">
+                    <button type="button" onclick="clearForm()">Clear Form</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <script>
+        function validate() {
+            var f = 0;
+            var ph = document.forms["myForm"]["phone"].value;
+            var reg = document.forms["myForm"]["regno"].value;
+            var name = document.forms["myForm"]["name"].value;
+            var email = document.forms["myForm"]["email"].value;
+            var gender = document.querySelector('input[name="gender"]:checked');
+            var guardian = document.forms["myForm"]["guardian"].value;
+            var nationality = document.forms["myForm"]["nationality"].value;
+            var internetBanking = document.forms["myForm"]["internetBanking"].checked;
+            var mobileBanking = document.forms["myForm"]["mobileBanking"].checked;
+            var smsAlerts = document.forms["myForm"]["smsAlerts"].checked;
+            var accountType = document.querySelector('input[name="accountType"]:checked');
+            var password = document.forms["myForm"]["password"].value;
+            var verifyPassword = document.forms["myForm"]["verifyPassword"].value;
+            var zipcode = document.forms["myForm"]["zipcode"].value;
+
+            if (ph.length == 10) {
+                document.getElementById("phone").innerHTML = "";
+                f++;
+            } else document.getElementById("phone").innerHTML = "*please provide correct phone number";
+
+            var pattern = /^[0-9a-zA-Z]+$/; // Removed space from the pattern
+            if (reg.match(pattern)) {
+                document.getElementById("regno").innerHTML = "";
+                f++;
+            } else document.getElementById("regno").innerHTML = "*please provide correct registration number";
+
+            pattern = /^[a-zA-Z ]{1,30}$/; // Modified pattern to allow up to 30 characters and spaces
+            if (name.match(pattern)) {
+                document.getElementById("name").innerHTML = "";
+                f++;
+            } else document.getElementById("name").innerHTML = "*please provide name in less than 30 characters";
+
+            pattern = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/; // Removed space from the pattern
+            if (email.match(pattern)) {
+                document.getElementById("email").innerHTML = "";
+                f++;
+            } else document.getElementById("email").innerHTML = "*please provide correct email";
+
+            if (gender) {
+                document.getElementById("gender").innerHTML = "";
+                f++;
+            } else document.getElementById("gender").innerHTML = "*please select gender";
+
+            if (guardian) {
+                document.getElementById("guardian").innerHTML = "";
+                f++;
+            } else document.getElementById("guardian").innerHTML = "*please provide guardian name";
+
+            if (nationality) {
+                document.getElementById("nationality").innerHTML = "";
+                f++;
+            } else document.getElementById("nationality").innerHTML = "*please provide nationality";
+
+            if (zipcode) {
+                document.getElementById("zipcode").innerHTML = "";
+                f++;
+            } else document.getElementById("zipcode").innerHTML = "*please provide zip code";
+
+            if (internetBanking || mobileBanking || smsAlerts) {
+                document.getElementById("preferences").innerHTML = "";
+                f++;
+            } else document.getElementById("preferences").innerHTML = "*please select at least one preference";
+
+            if (accountType) {
+                document.getElementById("accountType").innerHTML = "";
+                f++;
+            } else document.getElementById("accountType").innerHTML = "*please select account type";
+
+            if (password.length >= 6 && password.length <= 8 && password === verifyPassword) {
+                document.getElementById("password").innerHTML = "";
+                document.getElementById("verifyPassword").innerHTML = "";
+                f++;
+            } else {
+                document.getElementById("password").innerHTML = "*password must be 6 to 8 characters long";
+                document.getElementById("verifyPassword").innerHTML = "*passwords do not match";
+            }
+
+            if (f == 11) { // Adjusted the count for the number of fields
+                alert("Form submitted successfully");
+                return true;
+            } else return false;
+        }
+
+        function check() {
+            var box = document.forms["myForm"]["checkbox"].checked;
+            var padd = document.forms["myForm"]["paddress"];
+            var tadd = document.forms["myForm"]["taddress"];
+            if (box == true) {
+                padd.disabled = true;
+                padd.value = tadd.value;
+            } else {
+                padd.disabled = false;
+                padd.value = "";
+            }
+        }
+
+        function clearForm() {
+            document.getElementById("myForm").reset();
+        }
+    </script>
+</body>
+
+</html>
